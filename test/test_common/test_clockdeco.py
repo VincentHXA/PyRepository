@@ -1,10 +1,11 @@
 
-from common.clockdeco import clock
+from common.decorators import ClockDecoratorAsClass
 import functools
-import time
+
 
 @functools.lru_cache()
-@clock()
+# @clock()
+@ClockDecoratorAsClass
 def fibonacci(n):
     if n < 2:
         return n

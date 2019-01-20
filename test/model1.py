@@ -1,10 +1,10 @@
-import common.model_v2 as model
+import descriptors.model1 as model
 
-@model.entity
+# @model.entity
 class LineItem:
-    description = model.NonBlank()
-    weight = model.Quantity()
-    price = model.Quantity()
+    description = model.quantity()
+    weight = model.quantity()
+    price = model.quantity()
 
     def __init__(self, description, weight, price):
         self.description = description
@@ -26,11 +26,18 @@ if __name__ == '__main__':
 
     try:
         apple.weight = -5.5
+        print(apple.subtotal())
     except ValueError as ve:
         print(ve)
 
     try:
         apple.description = ""
+    except ValueError as ve:
+        print(ve)
+
+    try:
+        apple.weight = [6, 4]
+        print(apple.subtotal())
     except ValueError as ve:
         print(ve)
 

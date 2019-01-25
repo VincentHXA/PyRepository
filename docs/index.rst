@@ -71,6 +71,9 @@ Subsection B
 ------------
 
 This is a code example
+
+.. _example:
+
 ::
 
     def __init__(self, function, fmt = DEFAULT_FMT):
@@ -81,17 +84,18 @@ Let's continue our text.
 
 links below:
 
-.. _`link line with spaces`: http://www.baidu.com
-.. _linkLine: http://www.baidu.com
-.. _lineblock:
+Try `link line with spaces`_
 
-::
+Try linkLine_
 
-    def __init__(self, function, fmt = DEFAULT_FMT):
-        self.function = function
-        self.fmt = fmt
+Find the code example_
 
 Subsection C
 ------------
 
 -> go back to `Section 1`_
+
+
+
+.. _`link line with spaces`: http://www.baidu.com
+.. _linkLine: http://www.baidu.com

@@ -63,9 +63,9 @@ Second document section
 Subsection A
 ------------
 
-* a long text to illustrate the style *
+*a long text to illustrate the style*
 
-** a long text to illustrate the style **
+**a long text to illustrate the style**
 
 Subsection B
 ------------
@@ -79,9 +79,12 @@ This is a code example
 
 Let's continue our text.
 
+links below:
+
 .. _`link line with spaces`: http://www.baidu.com
 .. _linkLine: http://www.baidu.com
 .. _lineblock:
+
 ::
 
     def __init__(self, function, fmt = DEFAULT_FMT):

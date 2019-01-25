@@ -31,6 +31,16 @@ Subsection A of Section 1
 
 Hello World!
 
+This is a code example
+
+.. _example:
+
+::
+
+    def __init__(self, function, fmt = DEFAULT_FMT):
+        self.function = function
+        self.fmt = fmt
+
 Subsection B
 ------------
 
@@ -69,16 +79,6 @@ Subsection A
 
 Subsection B
 ------------
-
-This is a code example
-
-.. _example:
-
-::
-
-    def __init__(self, function, fmt = DEFAULT_FMT):
-        self.function = function
-        self.fmt = fmt
 
 Let's continue our text.
 

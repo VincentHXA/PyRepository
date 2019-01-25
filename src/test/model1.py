@@ -1,4 +1,5 @@
-import descriptors.model1 as model
+from src import descriptors as model
+
 
 # @model.entity
 class LineItem:

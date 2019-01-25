@@ -1,5 +1,5 @@
 
-from decorators import ClockDecoratorAsClass
+from src.decorators import ClockDecoratorAsClass
 import functools
 
 

@@ -6761,7 +6761,7 @@ jQuery.easing = {
 
 jQuery.fx = Tween.prototype.init;
 
-// Back compat <1.8 extension point
+// Back compat <1.8 setup point
 jQuery.fx.step = {};
 
 

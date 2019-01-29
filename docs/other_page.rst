@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 PyRepository
-############
+============================================
 
 .. toctree::
    :maxdepth: 2
@@ -19,19 +19,13 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-
-SRC
+Section 1
 ============
 
 First document section
 
-base
+Subsection A
 ------------
-
-os_adapter.py
-^^^^^^^^^^^^^
-
-一个对操作系统进行兼容性适配的模块，主要适配Windows和Linux操作系统。
 
 Subsection A of Section 1
 
@@ -71,7 +65,7 @@ one
 two
       two is an another number.
 
-TEST
+Section 2
 ============
 
 Second document section

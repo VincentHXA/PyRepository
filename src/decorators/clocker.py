@@ -1,8 +1,8 @@
 # coding: utf-8
 
-'''
+"""
 a decorator with parameters for adding a common clock
-'''
+"""
 
 import time
 import functools

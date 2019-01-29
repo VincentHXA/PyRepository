@@ -29,22 +29,3 @@ def singleton(cls):
         return instances[cls]
 
     return _singleton
-
-
-@singleton
-class Car:
-    def __init__(self):
-        pass
-
-
-def main():
-    car = Car()
-    print(id(car))
-    car = Car()
-    print(id(car))
-    car = Car()
-    print(id(car))
-
-
-if __name__ == '__main__':
-    main()

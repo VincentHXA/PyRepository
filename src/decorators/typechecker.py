@@ -4,10 +4,12 @@ import functools
 
 _INFOS = {}
 
-def type_checker(in_ = (), out = (type(None),)):
+
+def type_checker(in_=(), out=(type(None),)):
     def _type_checker(func):
         func_name = func.__name__
         _INFOS[func_name] = (in_, out)
+
         def _check_types(elements, types):
             if len(elements) != len(types):
                 raise TypeError('argument count is wrong')
@@ -35,7 +37,6 @@ def type_checker(in_ = (), out = (type(None),)):
             return res
         return __type_checker
     return _type_checker
-
 
 
 if __name__ == '__main__':

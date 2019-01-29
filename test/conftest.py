@@ -7,6 +7,7 @@ they will be automatically discovered by pytest.
 """
 
 import pytest
+import time
 
 @pytest.fixture(scope='module')
 def example_connection():

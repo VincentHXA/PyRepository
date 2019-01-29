@@ -8,6 +8,7 @@
 
 import abc
 
+
 class AutoStorage:
     _counter = 0
 
@@ -27,6 +28,7 @@ class AutoStorage:
     def __set__(self, instance, value):
         setattr(instance, self.storage_name, value)
 
+
 class Validate(abc.ABC, AutoStorage):
 
     def __set__(self, instance, value):
@@ -37,6 +39,7 @@ class Validate(abc.ABC, AutoStorage):
     def validate(self, instance, value):
         """return validated value or raise ValueError"""
 
+
 class Quantity(Validate):
     """a number greater than zero"""
 
@@ -44,6 +47,7 @@ class Quantity(Validate):
         if value <= 0:
             raise ValueError('value must be > 0')
         return value
+
 
 class NonBlank(Validate):
     """a string with at least one non-space character"""
@@ -53,6 +57,7 @@ class NonBlank(Validate):
         if len(value) == 0:
             raise ValueError('value cannot be empty or blank')
         return value
+
 
 def entity(cls):
     for key, attr in cls.__dict__.items():

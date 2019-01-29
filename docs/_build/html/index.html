@@ -46,25 +46,35 @@
 </div>
 <div class="section" id="src">
 <h2>SRC<a class="headerlink" href="#src" title="Permalink to this headline">¶</a></h2>
-<p>First document section</p>
+<p>源码。</p>
 <div class="section" id="base">
 <h3>base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="os-adapter-py">
 <h4>os_adapter.py<a class="headerlink" href="#os-adapter-py" title="Permalink to this headline">¶</a></h4>
 <p>一个对操作系统进行兼容性适配的模块，主要适配Windows和Linux操作系统。</p>
-<p>Subsection A of Section 1</p>
-<p>Hello World!</p>
-<p>This is a code example</p>
-<div class="highlight-default notranslate" id="example"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">fmt</span> <span class="o">=</span> <span class="n">DEFAULT_FMT</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">fmt</span> <span class="o">=</span> <span class="n">fmt</span>
+</div>
+<div class="section" id="py-ver-adapter-py">
+<h4>py_ver_adapter.py<a class="headerlink" href="#py-ver-adapter-py" title="Permalink to this headline">¶</a></h4>
+<p>一个对不同版本Python进行兼容性适配的模块，主要适配Python2和Python3。</p>
+</div>
+<div class="section" id="singleton-py">
+<h4>singleton.py<a class="headerlink" href="#singleton-py" title="Permalink to this headline">¶</a></h4>
+<p>单例模块，提供了一个单例装饰器（如下的代码示例）。</p>
+<div class="highlight-default notranslate" id="id1"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_singleton_decorator</span><span class="p">():</span>
+    <span class="nd">@singleton</span><span class="o">.</span><span class="n">singleton</span>
+    <span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">pass</span>
+
+    <span class="k">assert</span> <span class="nb">id</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+
+    <span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">pass</span>
+
+    <span class="k">assert</span> <span class="ow">not</span> <span class="nb">id</span><span class="p">(</span><span class="n">Dog</span><span class="p">())</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">Dog</span><span class="p">())</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="subsection-b">
-<h3>Subsection B<a class="headerlink" href="#subsection-b" title="Permalink to this headline">¶</a></h3>
-<p>Subsection b of Section 1</p>
 <p>Bullet list:</p>
 <ul class="simple">
 <li>one</li>
@@ -86,6 +96,7 @@
 </dl>
 </div>
 </div>
+</div>
 <div class="section" id="test">
 <h2>TEST<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h2>
 <p>Second document section</p>
@@ -94,17 +105,17 @@
 <p><em>a long text to illustrate the style</em></p>
 <p><strong>a long text to illustrate the style</strong></p>
 </div>
-<div class="section" id="id1">
-<h3>Subsection B<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="subsection-b">
+<h3>Subsection B<a class="headerlink" href="#subsection-b" title="Permalink to this headline">¶</a></h3>
 <p>Let’s continue our text.</p>
 <p>links below:</p>
 <p>Try <a class="reference external" href="http://www.baidu.com">link line with spaces</a></p>
 <p>Try <a class="reference external" href="http://www.baidu.com">linkLine</a></p>
-<p>Find the code <a class="reference internal" href="#example">example</a></p>
+<p>Find the code <a href="#id2"><span class="problematic" id="id3">example_</span></a></p>
 </div>
 <div class="section" id="subsection-c">
 <h3>Subsection C<a class="headerlink" href="#subsection-c" title="Permalink to this headline">¶</a></h3>
-<p>-&gt; go back to <a href="#id2"><span class="problematic" id="id3">`Section 1`_</span></a></p>
+<p>-&gt; go back to <a href="#id4"><span class="problematic" id="id5">`Section 1`_</span></a></p>
 </div>
 </div>
 </div>

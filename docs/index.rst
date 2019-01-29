@@ -23,7 +23,7 @@ Indices and tables
 SRC
 ============
 
-First document section
+源码。
 
 base
 ------------
@@ -33,24 +33,34 @@ os_adapter.py
 
 一个对操作系统进行兼容性适配的模块，主要适配Windows和Linux操作系统。
 
-Subsection A of Section 1
+py_ver_adapter.py
+^^^^^^^^^^^^^^^^^
 
-Hello World!
+一个对不同版本Python进行兼容性适配的模块，主要适配Python2和Python3。
 
-This is a code example
+singleton.py
+^^^^^^^^^^^^
 
-.. _example:
+单例模块，提供了一个单例装饰器（如下的代码示例）。
+
+.. _如下的代码示例:
 
 ::
 
-    def __init__(self, function, fmt = DEFAULT_FMT):
-        self.function = function
-        self.fmt = fmt
+   def test_singleton_decorator():
+       @singleton.singleton
+       class Cat:
+           def __init__(self):
+               pass
 
-Subsection B
-------------
+       assert id(Cat()) == id(Cat())
 
-Subsection b of Section 1
+       class Dog:
+           def __init__(self):
+               pass
+
+       assert not id(Dog()) == id(Dog())
+
 
 Bullet list:
 

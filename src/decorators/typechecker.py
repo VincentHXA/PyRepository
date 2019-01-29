@@ -37,21 +37,3 @@ def type_checker(in_=(), out=(type(None),)):
             return res
         return __type_checker
     return _type_checker
-
-
-if __name__ == '__main__':
-    class Demo:
-        @type_checker((int, int))
-        def meth1(self, int1, int2):
-            print('received {} and {}'.format(int1, int2))
-
-        @type_checker((str,), (int,))
-        def meth2(self, phrase):
-            print('received {}'.format(phrase))
-            return 12
-
-    demo = Demo()
-    demo.meth1(1, 2)
-    demo.meth2("hello")
-    print(_INFOS)
-    demo.meth2(2)

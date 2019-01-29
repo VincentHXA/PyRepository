@@ -59,8 +59,11 @@
 </div>
 <div class="section" id="singleton-py">
 <h4>singleton.py<a class="headerlink" href="#singleton-py" title="Permalink to this headline">¶</a></h4>
-<p>单例模块，提供了一个单例装饰器（如下的代码示例）。</p>
-<div class="highlight-default notranslate" id="id1"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_singleton_decorator</span><span class="p">():</span>
+<p>单例模块，提供了一个单例装饰器</p>
+<p>如下的使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">src.base.singleton</span> <span class="k">as</span> <span class="nn">singleton</span>
+
+<span class="k">def</span> <span class="nf">test_singleton_decorator</span><span class="p">():</span>
     <span class="nd">@singleton</span><span class="o">.</span><span class="n">singleton</span>
     <span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
         <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -75,47 +78,190 @@
     <span class="k">assert</span> <span class="ow">not</span> <span class="nb">id</span><span class="p">(</span><span class="n">Dog</span><span class="p">())</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">Dog</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Bullet list:</p>
-<ul class="simple">
-<li>one</li>
-<li>two</li>
-<li>three</li>
-</ul>
-<p>Enumerated list:</p>
-<ol class="arabic simple">
-<li>one</li>
-<li>two</li>
-<li>auto-enumerated</li>
-</ol>
-<p>Definition list:</p>
+</div>
+</div>
+<div class="section" id="decorators">
+<h3>decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">¶</a></h3>
+<p>一些装饰器。</p>
+<div class="section" id="clocker-py">
+<h4>clocker,py<a class="headerlink" href="#clocker-py" title="Permalink to this headline">¶</a></h4>
+<p>单步计时的装饰器函数，打印被装饰函数的单次调用用时。</p>
+<p>参数：字符串格式fmt。<em>默认： [{elapsed:0.8f}s] {name}({arg_str}) -&gt; {result}</em>。</p>
+<p>如下的使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="kn">from</span> <span class="nn">src.decorators.clocker</span> <span class="k">import</span> <span class="n">clock</span>
+
+
+<span class="k">def</span> <span class="nf">test_clocker</span><span class="p">():</span>
+
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">()</span>
+    <span class="nd">@clock</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">n</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">_fibonacci</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">_fibonacci</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="typechecker-py">
+<h4>typechecker.py<a class="headerlink" href="#typechecker-py" title="Permalink to this headline">¶</a></h4>
+<p>参数类型检查的装饰器函数，检查输入与输出的数目和类型。</p>
 <dl class="docutils">
-<dt>one</dt>
-<dd>one is a number.</dd>
-<dt>two</dt>
-<dd>two is an another number.</dd>
+<dt>参数：</dt>
+<dd><ul class="first last simple">
+<li>in: 函数输入类型的元组。</li>
+<li>out: 函数输出类型的元组。</li>
+</ul>
+</dd>
 </dl>
+<p>如下的使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">src.decorators.typechecker</span> <span class="k">import</span> <span class="n">type_checker</span>
+
+<span class="k">def</span> <span class="nf">test_typechecker</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">Demo</span><span class="p">:</span>
+        <span class="nd">@type_checker</span><span class="p">((</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span>
+        <span class="k">def</span> <span class="nf">meth1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">int1</span><span class="p">,</span> <span class="n">int2</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;received </span><span class="si">{}</span><span class="s1"> and </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">int1</span><span class="p">,</span> <span class="n">int2</span><span class="p">))</span>
+
+        <span class="nd">@type_checker</span><span class="p">((</span><span class="nb">str</span><span class="p">,),</span> <span class="p">(</span><span class="nb">int</span><span class="p">,))</span>
+        <span class="k">def</span> <span class="nf">meth2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phrase</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;received </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phrase</span><span class="p">))</span>
+            <span class="k">return</span> <span class="mi">12</span>
+
+        <span class="nd">@type_checker</span><span class="p">((</span><span class="nb">str</span><span class="p">,),</span> <span class="p">(</span><span class="nb">int</span><span class="p">,))</span>
+        <span class="k">def</span> <span class="nf">meth3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phrase</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;received </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phrase</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s2">&quot;hello&quot;</span>
+
+    <span class="n">demo</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">demo</span><span class="o">.</span><span class="n">meth1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">demo</span><span class="o">.</span><span class="n">meth2</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;argument count is wrong&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">demo</span><span class="o">.</span><span class="n">meth1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;arg .* should be .*&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">demo</span><span class="o">.</span><span class="n">meth1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;arg .* should be .*&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">demo</span><span class="o">.</span><span class="n">meth2</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;arg .* should be .*&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">demo</span><span class="o">.</span><span class="n">meth3</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="test">
-<h2>TEST<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h2>
-<p>Second document section</p>
-<div class="section" id="subsection-a">
-<h3>Subsection A<a class="headerlink" href="#subsection-a" title="Permalink to this headline">¶</a></h3>
-<p><em>a long text to illustrate the style</em></p>
-<p><strong>a long text to illustrate the style</strong></p>
+<div class="section" id="descriptors">
+<h3>descriptors<a class="headerlink" href="#descriptors" title="Permalink to this headline">¶</a></h3>
+<p>属性描述符。</p>
+<div class="section" id="demo-attr-desc-py">
+<h4>demo_attr_desc.py<a class="headerlink" href="#demo-attr-desc-py" title="Permalink to this headline">¶</a></h4>
+<p>一个属性描述符类的示范。</p>
+<ol class="arabic simple">
+<li>属性的读值。</li>
+<li>属性的设值与设值保护。</li>
+<li>属性名在被装饰类的dir中名称设置。</li>
+<li>类继承层次。</li>
+</ol>
+<p>如下的使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">import</span> <span class="nn">src.descriptors.demo_attr_desc</span> <span class="k">as</span> <span class="nn">attr_desc</span>
+
+
+<span class="k">def</span> <span class="nf">test_attr_desc</span><span class="p">():</span>
+
+    <span class="nd">@attr_desc</span><span class="o">.</span><span class="n">entity</span>
+    <span class="k">class</span> <span class="nc">LineItem</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">attr_desc</span><span class="o">.</span><span class="n">NonBlank</span><span class="p">()</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">attr_desc</span><span class="o">.</span><span class="n">Quantity</span><span class="p">()</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="n">attr_desc</span><span class="o">.</span><span class="n">Quantity</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">price</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+
+        <span class="k">def</span> <span class="nf">subtotal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span>
+
+    <span class="n">apple</span> <span class="o">=</span> <span class="n">LineItem</span><span class="p">(</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+
+    <span class="n">dir_apple</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="n">apple</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">&#39;_Quantity#weight&#39;</span> <span class="ow">in</span> <span class="n">dir_apple</span>
+    <span class="k">assert</span> <span class="s1">&#39;_NonBlank#description&#39;</span> <span class="ow">in</span> <span class="n">dir_apple</span>
+    <span class="k">assert</span> <span class="s1">&#39;_Quantity#price&#39;</span> <span class="ow">in</span> <span class="n">dir_apple</span>
+
+    <span class="k">assert</span> <span class="mf">2.4</span> <span class="o">==</span> <span class="n">apple</span><span class="o">.</span><span class="n">weight</span>
+    <span class="k">assert</span> <span class="mf">3.0</span> <span class="o">==</span> <span class="n">apple</span><span class="o">.</span><span class="n">price</span>
+    <span class="n">apple</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="mf">7.0</span>
+    <span class="k">assert</span> <span class="mf">7.0</span> <span class="o">==</span> <span class="n">apple</span><span class="o">.</span><span class="n">weight</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;value must be &gt; 0&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">apple</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.5</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;value cannot be empty or blank&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">apple</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
 </div>
-<div class="section" id="subsection-b">
-<h3>Subsection B<a class="headerlink" href="#subsection-b" title="Permalink to this headline">¶</a></h3>
-<p>Let’s continue our text.</p>
-<p>links below:</p>
-<p>Try <a class="reference external" href="http://www.baidu.com">link line with spaces</a></p>
-<p>Try <a class="reference external" href="http://www.baidu.com">linkLine</a></p>
-<p>Find the code <a href="#id2"><span class="problematic" id="id3">example_</span></a></p>
 </div>
-<div class="section" id="subsection-c">
-<h3>Subsection C<a class="headerlink" href="#subsection-c" title="Permalink to this headline">¶</a></h3>
-<p>-&gt; go back to <a href="#id4"><span class="problematic" id="id5">`Section 1`_</span></a></p>
+<div class="section" id="demo-attr-factory-py">
+<h4>demo_attr_factory.py<a class="headerlink" href="#demo-attr-factory-py" title="Permalink to this headline">¶</a></h4>
+<p>与 <a class="reference internal" href="#demo-attr-desc-py">demo_attr_desc.py</a> 功能类型，但以属性的特性工厂的形式。</p>
+<dl class="docutils">
+<dt>与 <a class="reference internal" href="#demo-attr-desc-py">demo_attr_desc.py</a> 中的属性描述符类的区别:</dt>
+<dd><ul class="first last simple">
+<li>难以重命名属性在被装饰类的dir中的名字。</li>
+</ul>
+</dd>
+</dl>
+<p>如下的使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">import</span> <span class="nn">src.descriptors.demo_attr_factory</span> <span class="k">as</span> <span class="nn">attr_factory</span>
+
+
+<span class="k">def</span> <span class="nf">test_attr_desc</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">LineItem</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">attr_factory</span><span class="o">.</span><span class="n">quantity</span><span class="p">()</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">attr_factory</span><span class="o">.</span><span class="n">quantity</span><span class="p">()</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="n">attr_factory</span><span class="o">.</span><span class="n">quantity</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">price</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+
+        <span class="k">def</span> <span class="nf">subtotal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span>
+
+    <span class="n">apple</span> <span class="o">=</span> <span class="n">LineItem</span><span class="p">(</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="mf">2.4</span> <span class="o">==</span> <span class="n">apple</span><span class="o">.</span><span class="n">weight</span>
+    <span class="k">assert</span> <span class="mf">3.0</span> <span class="o">==</span> <span class="n">apple</span><span class="o">.</span><span class="n">price</span>
+    <span class="n">apple</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="mf">7.0</span>
+    <span class="k">assert</span> <span class="mf">7.0</span> <span class="o">==</span> <span class="n">apple</span><span class="o">.</span><span class="n">weight</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;value must be &gt; 0&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">apple</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.5</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;value cannot be empty or blank&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">apple</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;unsupported data type&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">apple</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>

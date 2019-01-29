@@ -1,7 +1,6 @@
 
 import src.base.singleton as singleton
 
-
 def test_singleton_decorator():
     @singleton.singleton
     class Cat:

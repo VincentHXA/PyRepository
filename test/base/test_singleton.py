@@ -1,5 +1,5 @@
 
-import src.base.singleton as singleton
+import src.base.metasingleton as singleton
 
 def test_singleton_decorator():
     @singleton.singleton
@@ -9,8 +9,10 @@ def test_singleton_decorator():
 
     assert id(Cat()) == id(Cat())
 
-    class Dog:
-        def __init__(self):
-            pass
 
-    assert not id(Dog()) == id(Dog())
+def test_singleton_metaclass():
+
+    class Cat(metaclass=singleton.MetaSingleton):
+        pass
+
+    assert id(Cat()) == id(Cat())

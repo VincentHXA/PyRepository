@@ -1,5 +1,5 @@
 
-import src.base.metasingleton as singleton
+import src.base.meta_singleton as singleton
 
 def test_singleton_decorator():
     @singleton.singleton

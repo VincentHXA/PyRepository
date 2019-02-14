@@ -1,5 +1,5 @@
 
-import src.patterns.abstract_factory as af
+import src.patterns.factory.abstract_factory as af
 import pytest
 
 def test_abstract_factory():

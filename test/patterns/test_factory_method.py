@@ -1,5 +1,5 @@
 
-import src.patterns.factory_method as fm
+import src.patterns.factory.factory_method as fm
 import pytest
 
 

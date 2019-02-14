@@ -20,7 +20,7 @@ class SensitiveInfo(metaclass=ABCMeta):
 class InfoProxy:
     class ConcreteSensitiveInfo(SensitiveInfo):
         def __init__(self):
-            self.users = ['nick', 'tom', 'ben', 'mike']
+            SensitiveInfo.__init__(self)
 
     def __init__(self):
         self.password = '123456'
